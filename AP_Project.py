@@ -139,24 +139,61 @@ def up():
     plus.penup()
     plus.setheading(90)
     plus.forward(200)
+    blue_pick()
+    red_pick()
+    yellow_pick()
+    pink_pick()
+    green_pick()
+    cyan_pick()
+    grey_pick()
+    orange_pick()
+    maroon_pick()
+
 
 
 def down():
     plus.penup()
     plus.setheading(90)
     plus.backward(200)
+    blue_pick()
+    red_pick()
+    yellow_pick()
+    pink_pick()
+    green_pick()
+    cyan_pick()
+    grey_pick()
+    orange_pick()
+    maroon_pick()
 
 
 def left():
     plus.penup()
     plus.setheading(0)
     plus.backward(200)
+    blue_pick()
+    red_pick()
+    yellow_pick()
+    pink_pick()
+    green_pick()
+    cyan_pick()
+    grey_pick()
+    orange_pick()
+    maroon_pick()
 
 
 def right():
     plus.penup()
     plus.setheading(0)
     plus.forward(200)
+    blue_pick()
+    red_pick()
+    yellow_pick()
+    pink_pick()
+    green_pick()
+    cyan_pick()
+    grey_pick()
+    orange_pick()
+    maroon_pick()
 
 
 wn.onkeypress(up, "w")
@@ -168,7 +205,7 @@ wn.listen()
 
 rand_color = ""
 # Create color generator
-colors = ["Blue" , "Maroon"]
+colors = ["Blue", "red", "orange" , "cyan", "green", "pink", "grey", "yellow", "Maroon"]
 def random_color():
     global rand_color
     color_write = trtl.Turtle()
@@ -186,26 +223,50 @@ def blue_pick():
     if rand_color == "blue":
         if plus.xcor() < -199 and plus.ycor() > 199:
             print("hi")
+def red_pick():
+    global rand_color
+    if rand_color == "red":
+        if plus.xcor() > 199 and plus.ycor() > 199:
+            print("hi")
+def orange_pick():
+    global rand_color
+    if rand_color == "orange":
+        if 199 > plus.xcor() > -199 and -199 > plus.ycor():
+            print("hi")
+def cyan_pick():
+    global rand_color
+    if rand_color == "cyan":
+        if plus.xcor() > 199 and 199 > plus.ycor() > -199:
+            print("hi")
+def green_pick():
+    global rand_color
+    if rand_color == "green":
+        if -199 < plus.xcor() < 199 and -199 < plus.ycor() < 199:
+            print("hi")
+def pink_pick():
+    global rand_color
+    if rand_color == "pink":
+        if -400 < plus.xcor() < -199 and -199 < plus.ycor() < 199:
+            print("hi")
+def grey_pick():
+    global rand_color
+    if rand_color == "grey":
+        if -400 < plus.xcor() < -199 and -199 > plus.ycor():
+            print("hi")
+def yellow_pick():
+    global rand_color
+    if rand_color == "yellow":
+        if -199 < plus.xcor() < 199 and plus.ycor() > 199:
+            print("hi")
+def maroon_pick():
+    global rand_color
+    if rand_color == "maroon":
+        if plus.xcor() > 199 and -199 > plus.ycor():
+            print("hi")
 
 #Main Code
 wn.ontimer(countdown, counterInterval)
 random_color()
-blue_pick()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
