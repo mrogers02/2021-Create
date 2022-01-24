@@ -127,8 +127,13 @@ def countdown():
         counter.getscreen().ontimer(countdown, counterInterval)
 
 
-
-
+# Create Score Writer
+score = trtl.Turtle()
+sc = 0
+def scoreboard():
+    score.penup()
+    score.goto(350, 350)
+    score.write("Score: " + str(sc), font=fontSetup)
 
 
 # Setting up plus movement
@@ -220,54 +225,73 @@ def random_color():
 #Pair the generated color with the square
 def blue_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "blue":
         if plus.xcor() < -199 and plus.ycor() > 199:
-            print("hi")
+            plus.pendown()
 def red_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "red":
         if plus.xcor() > 199 and plus.ycor() > 199:
-            print("hi")
+            plus.pendown()
 def orange_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "orange":
         if 199 > plus.xcor() > -199 and -199 > plus.ycor():
-            print("hi")
+            sc = sc + 1
 def cyan_pick():
+    sc = 0
     global rand_color
+    scoreboard()
     if rand_color == "cyan":
         if plus.xcor() > 199 and 199 > plus.ycor() > -199:
-            print("hi")
+            sc = sc + 1
 def green_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "green":
         if -199 < plus.xcor() < 199 and -199 < plus.ycor() < 199:
-            print("hi")
+            sc = sc + 1
 def pink_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "pink":
         if -400 < plus.xcor() < -199 and -199 < plus.ycor() < 199:
-            print("hi")
+            sc = sc + 1
 def grey_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "grey":
         if -400 < plus.xcor() < -199 and -199 > plus.ycor():
-            print("hi")
+            sc = sc + 1
 def yellow_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "yellow":
         if -199 < plus.xcor() < 199 and plus.ycor() > 199:
-            print("hi")
+            sc = sc + 1
 def maroon_pick():
     global rand_color
+    scoreboard()
+    sc = 0
     if rand_color == "maroon":
         if plus.xcor() > 199 and -199 > plus.ycor():
-            print("hi")
+            sc = sc + 1
+
 
 #Main Code
 wn.ontimer(countdown, counterInterval)
+scoreboard()
 random_color()
-
 
 
 
