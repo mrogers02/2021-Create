@@ -110,28 +110,32 @@ counter = trtl.Turtle()
 counter.penup()
 counter.speed(100)
 counter.goto(-450, 350)
-timer = 30
+timer = 20
 
 fontSetup = ("Arial", 20, "normal")
 counterInterval = 1000
 
 def countdown():
     global timer, timerUp
+    counter.hideturtle()
     counter.clear()
     if timer <=0:
         counter.write("TIME IS UP", font=fontSetup)
         timerUp = True
+        scoreboard()
     else:
         counter.write("Timer: " + str(timer), font=fontSetup)
         timer -= 1
         counter.getscreen().ontimer(countdown, counterInterval)
 
 
+
 # Create Score Writer
 score = trtl.Turtle()
-sc = 0
+sc = 9
 def scoreboard():
     score.penup()
+    score.hideturtle()
     score.goto(350, 350)
     score.write("Score: " + str(sc), font=fontSetup)
 
@@ -200,20 +204,21 @@ def right():
     orange_pick()
     maroon_pick()
 
-
-wn.onkeypress(up, "w")
-wn.onkeypress(down, "s")
-wn.onkeypress(right, "d")
-wn.onkeypress(left, "a")
-wn.listen()
+def key_setup():
+    wn.onkeypress(up, "w")
+    wn.onkeypress(down, "s")
+    wn.onkeypress(right, "d")
+    wn.onkeypress(left, "a")
+    wn.listen()
 
 
 rand_color = ""
 # Create color generator
-colors = ["Blue", "red", "orange" , "cyan", "green", "pink", "grey", "yellow", "Maroon"]
+colors = ["blue", "red", "orange" , "cyan", "green", "pink", "grey", "yellow", "maroon"]
 def random_color():
     global rand_color
     color_write = trtl.Turtle()
+    color_write.hideturtle()
     color_write.penup()
     color_write.speed(100)
     color_write.goto(-100, 350)
@@ -222,76 +227,101 @@ def random_color():
 
 
 
-#Pair the generated color with the square
+#Pair the generated color with the squares
 def blue_pick():
     global rand_color
-    scoreboard()
     sc = 0
     if rand_color == "blue":
         if plus.xcor() < -199 and plus.ycor() > 199:
-            plus.pendown()
+            sc = sc + 1
+            remove_color()
+            random_color()
 def red_pick():
     global rand_color
-    scoreboard()
     sc = 0
     if rand_color == "red":
         if plus.xcor() > 199 and plus.ycor() > 199:
-            plus.pendown()
+            sc = sc + 1
+            remove_color()
+            random_color()
 def orange_pick():
     global rand_color
-    scoreboard()
     sc = 0
     if rand_color == "orange":
         if 199 > plus.xcor() > -199 and -199 > plus.ycor():
             sc = sc + 1
+            remove_color()
+            random_color()
 def cyan_pick():
     sc = 0
     global rand_color
-    scoreboard()
     if rand_color == "cyan":
         if plus.xcor() > 199 and 199 > plus.ycor() > -199:
             sc = sc + 1
+            remove_color()
+            random_color()
 def green_pick():
     global rand_color
-    scoreboard()
     sc = 0
     if rand_color == "green":
         if -199 < plus.xcor() < 199 and -199 < plus.ycor() < 199:
             sc = sc + 1
+            remove_color()
+            random_color()
 def pink_pick():
     global rand_color
-    scoreboard()
     sc = 0
     if rand_color == "pink":
         if -400 < plus.xcor() < -199 and -199 < plus.ycor() < 199:
             sc = sc + 1
+            remove_color()
+            random_color()
 def grey_pick():
     global rand_color
-    scoreboard()
     sc = 0
     if rand_color == "grey":
         if -400 < plus.xcor() < -199 and -199 > plus.ycor():
             sc = sc + 1
+            remove_color()
+            random_color()
 def yellow_pick():
     global rand_color
-    scoreboard()
     sc = 0
     if rand_color == "yellow":
         if -199 < plus.xcor() < 199 and plus.ycor() > 199:
             sc = sc + 1
+            remove_color()
+            random_color()
 def maroon_pick():
     global rand_color
-    scoreboard()
-    sc = 0
     if rand_color == "maroon":
-        if plus.xcor() > 199 and -199 > plus.ycor():
-            sc = sc + 1
+        if 100 > plus.xcor() > 199 and -199 < plus.ycor() < -100:
+            remove_color()
+            random_color()
 
+
+#remove previous color
+def remove_color():
+    color_erase = trtl.Turtle()
+    color_erase.hideturtle()
+    color_erase.speed(1000)
+    color_erase.penup()
+    color_erase.goto(-100, 350)
+    color_erase.pendown()
+    color_erase.pencolor("white")
+    color_erase.fillcolor("white")
+    color_erase.begin_fill()
+    color_erase.goto(-100, 385)
+    color_erase.goto(0, 385)
+    color_erase.goto(0, 350)
+    color_erase.goto(-100, 350)
+    color_erase.end_fill()
 
 #Main Code
 wn.ontimer(countdown, counterInterval)
-scoreboard()
 random_color()
+key_setup()
+
 
 
 
